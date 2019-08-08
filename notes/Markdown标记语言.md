@@ -166,11 +166,43 @@ print s
 [假装这里有个网址]: htps://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 ~~~
 格式1：
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")  
 格式2：
 ![alt text][假装这里有个网址]
 
-[假装这里有个网址]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+[假装这里有个网址]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"  
+# 表格显示
+~~~
+|TH1|TH2|TH3|
+|---|---|---|
+|TD1|TD3|TD5|
+|TD2|TD4|TD6|
+表格外框可以省略不写
+
+表格样式：
+|左对齐|居中|右对齐|
+|:---|:---:|---:|
+|TD1|TD3|TD5|
+|TD2|TD4|TD6|
+
+在表格中也可以使用引用和强调样式：
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
+~~~
+效果如下：
+|左对齐|居中|右对齐|
+|:---|:---:|---:|
+|TD1|TD3|TD5|
+|TD2|TD4|TD6|
+
+---
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
+
 
 
 
