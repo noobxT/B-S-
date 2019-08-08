@@ -5,5 +5,5 @@
 *  现在是2019年8月，里面已经有框架走向过时了。有些语言或者框架就算是过时，也是值得学习和掌握的。  
 ## 磨刀不误砍柴工  
 1.  [Markdown标记语言](https://www.bilibili.com/video/av32197027/,"【小马技术】Markdown入门")  
-0.  [git版本控制系统](https://www.bilibili.com/video/av17603446/,"表严肃讲Git - Git教程")  
+0.  [git版本控制系统] (https://www.bilibili.com/video/av17603446/,"表严肃讲Git - Git教程")  
 
