@@ -7,8 +7,22 @@
 #### H4
 ##### H5
 ###### H6
+对于H1,H2还有另外两种特别的写法：
+
+Alt-H1
+======
+
+Alt-H2
+------
 ~~~
-Alternatively, for H1 and H2, an underline-ish style:
+
+效果如下：  
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
 
 Alt-H1
 ======
