@@ -89,8 +89,8 @@ Markdown是最方便的标记语言
 - 丝袜美腿
 - 另类乱伦
 有序列表
-列表符号：数字
-格式如下：（第一个数字必须是1，以后的数字可以写0，这样避免了以后在中间插入文字后造成顺序需要重新输入一次的麻烦。）
+列表符号：数字.
+格式如下：（数字加.加空格）（第一个数字必须是1，以后的数字可以写0，这样避免了以后在中间插入文字后造成顺序需要重新输入一次的麻烦。）
 1 自拍
 0 偷拍
 0 国产专区
@@ -112,12 +112,12 @@ Markdown是最方便的标记语言
 - 丝袜美腿
 - 另类乱伦
 有序：
-1 自拍
-0 偷拍
-0 国产专区
-0 丝袜美腿
-0 另类乱伦
-#超文本链接
+1. 自拍
+0. 偷拍
+0. 国产专区
+0. 丝袜美腿
+0. 另类乱伦
+# 超文本链接
 ~~~
 方法1：
 [Markdown github](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet#headers)
@@ -135,7 +135,7 @@ Markdown是最方便的标记语言
 [1]： https://www.google.com
 [404网站]: https://twitter.com
 ~~~
-#代码高亮显示
+# 代码高亮显示
 ~~~
 ```javascript
 var s = "JavaScript syntax highlighting";
