@@ -170,7 +170,7 @@ print s
 格式2：
 ![alt text][假装这里有个网址]
 
-[假装这里有个网址]: htps://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+[假装这里有个网址]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 
 
 
