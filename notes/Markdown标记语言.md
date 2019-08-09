@@ -201,5 +201,5 @@ Markdown | Less | Pretty
 Markdown | Less | Pretty
 --- | --- | ---
 *Still* | `renders` | **nicely**
-1 | 2 | 3  
+1 | 2 | 3 |  
 参考：[Markdown github Wiki](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
