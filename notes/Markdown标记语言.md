@@ -192,14 +192,15 @@ Markdown | Less | Pretty
 1 | 2 | 3
 ~~~
 效果如下：
-|左对齐|居中|右对齐|
-|:---|:---:|---:|
-|TD1|TD3|TD5|
-|TD2|TD4|TD6|
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
 ---
 Markdown | Less | Pretty
 --- | --- | ---
 *Still* | `renders` | **nicely**
 1 | 2 | 3 |  
-  参考：[Markdown github Wiki](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
+
