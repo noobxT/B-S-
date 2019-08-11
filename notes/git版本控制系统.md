@@ -65,13 +65,181 @@ $ pwd
 > pwd命令为显示当前所在目录路径。（print working directory的缩写）  
 创建好版本库之后，在版本库目录下有个`.git`的隐藏目录（以免你手贱误操作）。这个目录git来存放节点以及配置文件，不能破坏以及私自修改目录里的文件。   
 如需查看目录所有文件：Linux：`ls -la` ,Windows: `dir/a`。  
-## 将文件添加进版本库  
+然后将这个目录通过`git init`命令变成git可以管理的仓库：
+~~~
+$ git init
+Initialized empty Git repository in /Users/michael/learngit/.git/
+~~~  
+**第二种方法：**  
+~~~
+$ git init learngit
+Initialized empty Git repository in /Users/michael/learngit/.git/
+~~~
+直接创建目录并作为git的版本库。  
+**第三种方法：**
+通过`git clone`命令从github拷贝代码到本地git版本库。  
+~~~
+$ git clone https://github.com/KLExTt/B-S-.git
+~~~
+## 将文件添加进工作区  
 所有版本控制系统只能追踪文本文件，程序代码。所以图片以及视频这些文件是无法追踪修改节点的，但是可以通过版本控制系统进行管理（那谁还用，失去了管理的意义）  
 word是也是一种例外，git也无法追踪历史修改节点。  
 因为文本是有编码的，而视频图片这些文件属于二进制，没有编码。所以git（包括所有的版本控制系统）都无法追踪历史节点。  
 **windows另有玄机**  
 当你在window下使用自带记事本进行编辑时，想要保存一个以UTF-8编码的文件就会在文件开始的地方插入三个不可见的字符（0xEF 0xBB 0xBF，即BOM）。它是一串隐藏的字符，用于让记事本等编辑器识别这个文件是否以UTF-8编码。这种做法就是方便了windows自带的记事本软件，给其他语言带来巨大的麻烦。（比如说PHP）  
-推荐使用[notepad++](http://notepad-plus-plus.org)或者[editplus](https://www.editplus.com) 来代替记事本。。
+推荐使用[notepad++](http://notepad-plus-plus.org)或者[editplus](https://www.editplus.com) 来代替记事本。。  
+既然知道了，能管理什么和不能管理什么，我们继续。。  
+首先随便编写一个txt文件：  
+~~~
+git is a version control system.
+git is a free software.
+~~~
+然后放到我们刚才创建的工作区`learngit`文件夹里。因为这是git工作区，不放在工作区里，git是无法操作这个文件的。    
+接下来通过命令来操作git，添加进仓库：（上述一步只是添加进版本库，git想要追踪这个文件就必须通过命令添加进git）  
+~~~
+$ git add readme.txt
+~~~
+再然后，用命令`git commit`将文件提交到仓库：
+~~~
+$ git commit -m "wrote a readme file"
+[master (root-commit) eaadf4e] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.txt
+~~~
+这样就完成了。`git commit`可以理解为提交一个节点，或者可以说是一个还原点。`-m`后面双引号中的内容为改动记录。最好详细填写修改原因，这样方便你或者其他人查看你修改了什么内容或者增加了什么东西。  
+不想`-m`添加内容也可以`--allow-empty-message`什么都不添加。不推荐这么做。  
+git commit命令执行成功后会告诉你，~1 file changed~：1个文件被改动（我们新添加的readme.txt文件）；~2 insertions~：插入了两行内容（readme.txt有两行内容）。   
+# 基本操作
+## 查询状态
+现在我们已经提交了文件到工作区中，接下来我们进入readme.txt修改一下，改为如下内容：  
+~~~
+Git is a distributed version control system.
+Git is free software.
+~~~
+现在，我们回到git，输入`git status`命令，结果为：
+~~~
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+~~~
+`git status`命令可以让我们时刻掌握仓库当前的状态，上面的命令输出告诉我们，`readme.txt`被修改过了，但还没有准备提交的修改。
+## 查询修改内容
+虽然git告诉我们问文件已经修改过，但是我们不知道修改了什么地方。所以用`git diff`来查看修改内容：  
+~~~
+$ git diff readme.txt 
+diff --git a/readme.txt b/readme.txt
+index 46d49bf..9247db6 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,2 +1,2 @@
+-Git is a version control system.
++Git is a distributed version control system.
+ Git is free software.
+~~~
+上面的命令可以看出`-`后面为修改前的内容，`+`为修改后的内容。既然知道了有修改内容，但是需要进行提交并创建节点。  
+## 保存修改并创建节点  
+在通过上述命令之后，我们已经知道了文件进行了什么修改，所以我们要进行提交到git仓库并创建节点。  
+首先，`git add`命令到暂存区（个人理解为缓存）：  
+~~~
+$ git add readme.txt
+~~~
+不会有任何输出，在第二步之前，我们先`git status`查看一下仓库状态：
+~~~
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   readme.txt
+~~~  
+`git status`告诉我们，将要被提交的修改包括readme.txt，接下来我们`git commit -m`提交到git，生成一个节点：  
+~~~
+$ git commit -m "add distributed"
+[master e475afc] add distributed
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ ~~~
+接下来我们再用`git status`查看一下仓库状态：
+~~~
+$ git status
+On branch master
+nothing to commit, working tree clean
+~~~
+命令行告诉我们，没用东西需要提交，且暂存区（缓存区）是空的。   
+在介绍第二种方法之前我们先来解释一下上文提到的暂存区（缓存区）、版本库和工作区分别指的是什么： 
+## 工作区与版本库以及操作流程
+**工作区**就是指在电脑里创建的目录，存放等待git操作的文件或者是修改完成的文件。上文创建的`learngit`文件夹就是一个工作区。
+**版本库**：暂存区(stage)就属于版本库之中，以及后文将提到的分支和指针`head`。我们上面做的一些添加到版本库的操作就是向master分支去添加。你问我master是啥？master就是个名字，意思是主分支的意思。就像大树有树干和枝杈，master就可以理解为主干。上文描述`.git`的也属于git的版本库之中。 
+前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的：  
+第一步是用`git add`把文件添加进去，实际上就是把文件修改添加到暂存区；  
+第二步是用`git commit`提交更改，实际上就是把暂存区的所有内容提交到当前分支。  
+因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，`git commit`就是往master分支上提交更改。  
+你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。  
+俗话说，实践出真知。现在，我们再练习一遍，先对`readme.txt`做个修改，比如加上一行内容：  
+~~~
+Git is a distributed version control system.
+Git is free software.
+Git has a mutable index called stage.
+~~~
+然后，在工作区新增一个`LICENSE`文本文件（内容随便写）。   
+先用```git status```查看一下状态：
+```
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   readme.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	LICENSE
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+git告诉我们，`readme.txt`被修改了，而`LICENSE`文件未被添加到版本库保存节点，所以状态是`untracked`。  
+现在，使用`git add`，把两个都添加到版本库后，再用`git status`查看一下：  
+```
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   LICENSE
+	modified:   readme.txt
+```
+我们可以看出`git add`命令实际上就是把提交的内容放到暂存区（缓存区），然后，执行`git commit`才能提交修改到版本库的分支。  
+在我们提交之后，再使用`git status`查看一下状态:  
+```
+$ git status
+On branch master
+nothing to commit, working tree clean
+```
+git告诉我们，没有什么需要提交的，缓存区是空的。    
+接着上文说，添加到管理区的**第二种方法**：   
+使用`git add .`命令，添加所有已修改的文件到缓存区，然后使用`git commit -m`提交缓存区的所有内容到版本库。
+~~~
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   LICENSE
+	modified:   readme.txt
+~~~
+
+
+
+
+
+
 
 
 
