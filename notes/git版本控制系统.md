@@ -451,9 +451,74 @@ nothing to commit, working tree clean
 情景三：KL兄实在是困得不行，居然提交到了版本库上。怎么办？可以用之前我们讲过的版本回退退到之前的一个版本。我们不赘述。  
 情景四：KL兄直接把本地版本库推送到了远程。。嗯。。。。写辞职报告把。。。。    
 ## 删除文件 
+首先我们添加一个新文件`test.txt`到git并提交到版本库：
+~~~
+$ git add test.txt
 
-## 创建标签
+$ git commit -m "add test.txt"
+[master b84166e] add test.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+~~~
+在工作区的文件，一般可以用`rm`命令删除：
+~~~
+$ rm test.txt
+~~~
+这个时候我们回到git，`git status`命令查询一下：
+~~~
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	deleted:    test.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+~~~
+git告诉我们有一个文件被删除了。现在我们有两个选择，第一个是确认删除命令，提交到版本库中，那我们就用`git rm`删掉，然后`git commit`提交：    
+~~~
+$ git rm test.txt
+rm 'test.txt'
+
+$ git commit -m "remove test.txt"
+[master d46f35e] remove test.txt
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 test.txt
+ ~~~
+这样就从版本库中彻底删除了。  
+第二种情况就是我们误删除了工作区的文件，但是我们可以从版本库里恢复：  
+~~~
+$ git checkout -- test.txt
+~~~
+`git checkout`是用将版本库例的文件替换工作区的文件。  
+# 分支管理
+分支的就好像是平行宇宙的另外一个你，到最后有一个时间点，两个分支就会合到一起。  
+在实际开发中，假如5个人开发一个项目，而这个项目需要工期按时完成。所以我们就要把这个项目开多个分支，让大家一起去写各个分支的模块。然后在未来的某个时间，将分支合并到一起。这既安全又高效。这就是git的迷人之处。  
+## 创建分支
+首先我们先创建一个`dev`分支，然后切换到`dev`分支：
+```
+$ git branch dev
+$ git checkout dev
+Switched to branch 'dev'
+```
+我们也可以用`git checkout`命令加上-b参数表示创建并切换，相当于以上两条命令。  
+```
+$ git checkout -b dev
+Switched to a new branch 'dev'
+```
+然后我们用`git branch`来查看所有分支，当前分支会标一个`*`号。  
+~~~
+$ git branch
+* dev
+  master
+  ~~~
+
+
+# 标签
 就算我们有了`commit ID`，我们查找commit的效率还是很低。因为这么一串十六进制数想要找到，也是很浪费时间。所以创建标签就是方便大家的事情。  
+## 创建标签
+	
 # 远程库
 ## 绑定远程库
 有个叫[github]（https://github.com/)的神奇的网站,作为管理代码的仓库。所以github可以作为git的远程仓库。
