@@ -513,7 +513,44 @@ $ git branch
 * dev
   master
   ~~~
-
+  然后，我们就可以在dev分支上正常提交，比如对readme.txt做个修改，加上一行：  
+```
+Creating a new branch is quick.
+```
+然后提交:   
+~~~
+$ git add readme.txt 
+$ git commit -m "branch test"
+[dev b17d20e] branch test
+ 1 file changed, 1 insertion(+)
+ ~~~  
+现在我们`dev`分支的工作完成，我们就可以切换回`master`分支：  
+~~~
+$ git checkout master
+Switched to branch 'master'
+~~~
+刚才我们修改的`readme.txt`并没有出现效果，因为那个提交是在`dev`分支上。  
+接下来我们把`dev`分支合并到`master`分支上，使用`git merge`来合并指定分支到当前分支。合并后，我们查看一下readme.txt的文件内容，可以看到在dev修改的内容在`master`分支里能看到了。  
+```
+$ git merge dev
+Updating d46f35e..b17d20e
+Fast-forward
+ readme.txt | 1 +
+ 1 file changed, 1 insertion(+)
+```
+上面git给我们的`fast-forward`的输出信息，表示这次合并是“快进模式”，也就是直接把`master`指向`dev`的当前提交，所以速度快。还有其他的合并方式，后面我们会讲到。  
+合并完成就可以删除`dev`分支了,使用`git branch -d <name>`来删除分支：
+```
+$ git branch -d dev
+Deleted branch dev (was b17d20e).
+```
+删除后我们，`branch`命令查看一下分支：
+```
+$ git branch
+* master
+```
+只剩下`master`分支了。  
+因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在`master`分支上工作效果是一样的，但过程更安全。
 
 # 标签
 就算我们有了`commit ID`，我们查找commit的效率还是很低。因为这么一串十六进制数想要找到，也是很浪费时间。所以创建标签就是方便大家的事情。  
