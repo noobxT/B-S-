@@ -6,4 +6,5 @@
 ## 磨刀不误砍柴工  
 1.  [Markdown标记语言](https://www.bilibili.com/video/av32197027/,"【小马技术】Markdown入门")  
 0.  [Git版本控制系统](https://www.bilibili.com/video/av17603446/,"表严肃讲Git-Git教程")  
-
+## HTML 
+[HTML & CSS 核心基础](https://www.bilibili.com/video/av21557880/?p=38)
